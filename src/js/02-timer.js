@@ -4,10 +4,11 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
 import Notiflix from 'notiflix';
+import "notiflix/dist/notiflix-3.2.6.min.css";
 
 
 
-refs = {
+const refs = {
   startBtn: document.querySelector('button[data-start]'),
   dataTimePicker: document.getElementById('datetime-picker'),
   d: document.querySelector('span[data-days]'),
