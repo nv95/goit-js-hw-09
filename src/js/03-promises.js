@@ -1,14 +1,14 @@
 import Notiflix, { Notify } from 'notiflix';
-import "notiflix/dist/notiflix-3.2.6.min.css";
+import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 const refs={
-  form: document.querySelector('form'),
-  firstDelay:document.querySelector('[name="delay"]'),
-  delayStap:document.querySelector('[name="step"]'),
-  amount:document.querySelector('[name="amount"]'),
+  form: document.querySelector('.form'),
+  firstDelay: document.querySelector('[name="delay"]'),
+  delayStep: document.querySelector('[name="step"]'),
+  amount: document.querySelector('[name="amount"]'),
 }
 
-refs.form.addEventListener('click',onSubmitCreatePromis)
+refs.form.addEventListener('submit',onSubmitCreatePromis);
 
 function createPromise(position, delay) {
   return new Promise((resolve,reject)=>{
@@ -19,21 +19,21 @@ function createPromise(position, delay) {
       } else {
         reject({position, delay})
       } 
-    },delay)
-  })
+    },delay);
+  });
  
 }
 
 
-function onSubmitCreatePromis(e){
+function onSubmitCreatePromis(e) {
   e.preventDefault();
 
   let delay = refs.firstDelay.valueAsNumber;
-  const delayStapNumber = refs.delayStap.valueAsNumber;
+  const delayStepNumber = refs.delayStep.valueAsNumber;
   const amountNumber = refs.amount.valueAsNumber;
 
-  for(let i = 1; i <= amountNumber; i+=1){
-    createPromise(i,delay)
+  for ( let i = 1; i <= amountNumber; i++) {
+    createPromise(i, delay)
     .then(({ i, delay }) => {
       // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
       Notiflix.Notify.success(
@@ -46,6 +46,6 @@ function onSubmitCreatePromis(e){
         `❌ Rejected promise ${i} in ${delay}ms`
       );
     });
-    delay += delayStapNumber;
+    delay += delayStepNumber;
   }
 }
